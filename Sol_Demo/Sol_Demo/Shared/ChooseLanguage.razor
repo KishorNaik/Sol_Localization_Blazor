@@ -1,0 +1,13 @@
+﻿@if (this.cultures != null)
+{
+    <form class="form-inline">
+        <select class="form-control mr-2" @bind="this.selectedCulture">
+            <option>Select Language...</option>
+            @foreach (var culture in this.cultures)
+            {
+                <option value="@culture.Key">@culture.Value</option>
+            }
+        </select>
+        <button class="btn btn-outline-primary" @onclick="this.OnLanguageChange">Change</button>
+    </form>
+}

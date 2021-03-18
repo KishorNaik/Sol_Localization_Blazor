@@ -1,0 +1,57 @@
+﻿Step 1:
+Download following package for localization
+Microsoft.Extensions.Localization
+
+Step 2:
+Go to Startup.cs file.
+	2.1 
+	In the ConfigureService method, add the following code.
+
+	 services.AddControllers();
+	 services.AddLocalization((option) =>
+    {
+        option.ResourcesPath = "Resources";
+    });
+
+	2.2 
+	Go to appserrings.json file and add the clutures. [go to Source Code]
+
+	2.3 
+	Create a Configurations folder in the main solution.
+		2.3.1 Create a RequestLocalization Middleware class. [Go to Source Code]
+
+	2.4
+	In the Configure method, add the following line between app.UseStaticFiles and app.UseRouting.
+
+	app.UseRequestLocalizationConfig(Configuration);
+
+	2.5
+	Map Controllers endpoint in App.UseEndPoint method, Like this
+
+	app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
+            });
+
+Step 3:
+Create Resources folder in the main solution.
+
+Step 4:
+Create a Controllers folder in the main solution. Add a Blank MVC Controller class. File name should be like this, CultureController.cs [check Source Code] 
+
+Step 5:
+Go to Shared folder, Create a Razor Component and give the file name like this, ChooseLanguage.razor [Check Source Code]
+
+Step 6:
+Go to Shared folder, MainLayout razor file. Add the choose Language razor Component [Check Source code]
+
+Step 7:
+Go to Resources folder, Create a Resources File as per the Cultures. [Check Source Code]
+	App.Resx - Default USA cultures
+	Add resx file as per the cultures
+
+Step 8:
+Go to Index.razor file to test the cultures.
+
